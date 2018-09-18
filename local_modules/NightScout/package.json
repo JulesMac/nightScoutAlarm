@@ -1,5 +1,5 @@
 {
-  "name": "log",
+  "name": "nightscout",
   "version": "1.0.0",
   "description": "nioghtscout",
   "main": "app.js",
@@ -8,6 +8,5 @@
   },
   "author": "Julian Mackintosh",
   "license": "ISC",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

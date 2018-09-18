@@ -9,10 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "audio": "file:local_modules/Audio",
     "axios": "^0.16.2",
     "express": "^4.16.3",
     "keypress": "^0.2.1",
+    "log": "file:local_modules/Log",
+    "nightscout": "file:local_modules/NightScout",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "time": "file:local_modules/Time"
   }
 }

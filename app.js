@@ -18,17 +18,17 @@ var thresholdLow = 4.0;
 var thresholdHigh = 9.0;
 
 
-var logger = require("./server/Log")("main");
+var logger = require("./local_modules/Log")("main");
 var log = logger.log;
 
 var alartSound = '/Users/jules/Music/iTunes/iTunes Media/Music/Bomb the Bass/Into the Dragon/03 On the Cut.m4a'
-var audioPlayer = require("./server/Audio")(alartSound);
-var time = require("./server/Time");
+var audioPlayer = require("./local_modules/Audio")(alartSound);
+var time = require("./local_modules/Time");
 
 
 
 const axios = require('axios');
-const nightScout = require('./server/NightScout')(nightScoutUrl);
+const nightScout = require('./local_modules/NightScout')(nightScoutUrl);
 
 
 app.get('/', function (req, res) {
