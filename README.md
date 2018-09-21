@@ -1,2 +1,2 @@
 # nightScoutAlarm
-Rasberry-pi alarm for Hi/Lo SG levels
+Raspberry-pi alarm for Hi/Lo SG levels
