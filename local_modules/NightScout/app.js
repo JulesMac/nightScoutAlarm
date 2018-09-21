@@ -3,7 +3,7 @@ const axios = require('axios');
 var logger = require("../Log")("nightScout");
 var log = logger.log;
 
-
+const meanSampleLength = 2;
 
 function buildApi(baseUrl) {
   return {
@@ -27,7 +27,7 @@ function NightScout(baseUrl){
       )
       .then(response => {
         //var values = (response.data.sgvs.reverse().slice(0, 2).map(x => x.mgdl / 18.0));
-        var data = response.data.slice(0, 3);
+        var data = response.data.slice(0, meanSampleLength);
         var sgvs = (data.map(x => x.sgv / 18.0));
         var timeStamp = data[0].dateString
         //log(values);
