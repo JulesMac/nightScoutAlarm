@@ -27,7 +27,7 @@ function NightScout(baseUrl){
       )
       .then(response => {
         //var values = (response.data.sgvs.reverse().slice(0, 2).map(x => x.mgdl / 18.0));
-        var data = response.data.slice(0, 2);
+        var data = response.data.slice(0, 3);
         var sgvs = (data.map(x => x.sgv / 18.0));
         var timeStamp = data[0].dateString
         //log(values);
