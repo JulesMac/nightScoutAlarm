@@ -14,7 +14,7 @@ const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
 var keypress = require('keypress');
 
 
-var thresholdLow = 6.0;
+var thresholdLow = 4.0;
 var thresholdHigh = 9.0;
 
 
