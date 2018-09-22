@@ -21,7 +21,7 @@ var thresholdHigh = 9.0;
 var logger = require("./local_modules/Log")("main");
 var log = logger.log;
 
-var alartSound = '/home/pi/alarm.m4a';
+var alartSound = './alarm.m4a';
 var audioPlayer = require("./local_modules/Audio")(alartSound);
 var time = require("./local_modules/Time");
 
