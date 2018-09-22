@@ -13,7 +13,7 @@ function Audio(audioFile){
     if(!isPlaying){
       log("startPlaying...");
       isPlaying = true;
-      audioProcess = player.play(audioFile, function(err){
+      audioProcess = player.play(audioFile, {omxplayer: ['-o', 'alsa']}, function(err){
         if (err) {
           log(err);
           throw err;

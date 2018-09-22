@@ -14,14 +14,14 @@ const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
 var keypress = require('keypress');
 
 
-var thresholdLow = 4.0;
+var thresholdLow = 6.0;
 var thresholdHigh = 9.0;
 
 
 var logger = require("./local_modules/Log")("main");
 var log = logger.log;
 
-var alartSound = '/Users/jules/Music/iTunes/iTunes Media/Music/Bomb the Bass/Into the Dragon/03 On the Cut.m4a'
+var alartSound = '/home/pi/alarm.m4a';
 var audioPlayer = require("./local_modules/Audio")(alartSound);
 var time = require("./local_modules/Time");
 
