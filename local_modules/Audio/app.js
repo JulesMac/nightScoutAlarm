@@ -13,6 +13,7 @@ function Audio(audioFile){
     if(!isPlaying){
       log("startPlaying...");
       isPlaying = true;
+      //-o alsa requird to work on my Pi
       audioProcess = player.play(audioFile, {omxplayer: ['-o', 'alsa']}, function(err){
         if (err) {
           log(err);
