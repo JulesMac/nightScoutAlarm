@@ -1,5 +1,6 @@
 
-var logger = require("../Log")("audio")
+const logger = require("../Log")("audio")
+const processTreeKill =require('tree-kill')
 
 function Audio(audioFile){
   var audioFile = audioFile
@@ -31,7 +32,8 @@ function Audio(audioFile){
     if(isPlaying){
       log("stop Playing...");
       isPlaying = false;
-      audioProcess.kill();
+      log("kill process - " + audioProcess.pid);
+      processTreeKill(audioProcess.pid);
     }
   }
 

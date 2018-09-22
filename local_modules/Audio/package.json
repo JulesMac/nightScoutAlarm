@@ -9,6 +9,7 @@
   "author": "Julian Mackintosh",
   "license": "ISC",
   "dependencies": {
-    "play-sound": "^1.1.2"
+    "play-sound": "^1.1.2",
+    "tree-kill": "^1.2.0"
   }
 }
