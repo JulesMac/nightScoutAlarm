@@ -98,6 +98,10 @@ var nsMonitor = function (){
       log("Set snooze timer")
     }
   }
+
+  return {
+    snooze: startSnooze
+  }
 }
 
 module.exports = nsMonitor;

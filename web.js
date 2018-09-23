@@ -10,19 +10,20 @@ const app = express();
 
 const indexRouter = require('./routes/index');
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
+var web = function(nsMonitor){
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+  app.use(logger('dev'));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter(nsMonitor));
 
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
-});
-
-module.exports = app;
+  const PORT = 3000;
+  app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}!`);
+  });
+}
+module.exports = web;

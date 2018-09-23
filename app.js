@@ -1,4 +1,4 @@
 
 
 const nsMonitor = require('./nsMonitor')();
-const web = require('./web');
+const web = require('./web')(nsMonitor);
