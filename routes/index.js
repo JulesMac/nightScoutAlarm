@@ -12,7 +12,14 @@ var snoozer = function(nsMonitor){
   router.get('/snooze', function(req, res, next) {
     console.log("--------")
     nsMonitor.snooze();
-    res.render('index', { title: 'Express' });
+    res.render('index',
+      {
+        title: 'Express',
+        lastUpdated: '---',
+        data: {
+          last: "123"
+        }
+      });
     //res.send('respond with a resource');
   });
   return router;
