@@ -13,7 +13,7 @@ const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
 
 var nsMonitor = function (){
 
-  var keypress = require('keypress');
+//  var keypress = require('keypress');
 
 
   var thresholdLow = 4.0;
@@ -59,7 +59,7 @@ var nsMonitor = function (){
         }, maxAlarmPlayTime);
         snoozeTime = timeToSnooze;
         //Start checking for key presses to mute alarm
-        process.stdin.setRawMode(true);
+        //process.stdin.setRawMode(true);
       }
     }
   }
@@ -69,24 +69,24 @@ var nsMonitor = function (){
 
 
   // make `process.stdin` begin emitting "keypress" events
-  keypress(process.stdin);
+//  keypress(process.stdin);
 
 
 
-  function keyHandler(ch, key) {
-    if (!isSnoozed && key && (key.name == 'space')) {
-      startSnooze();
-    }
-  }
-  // listen for the "keypress" event
-  process.stdin.on('keypress', keyHandler);
-  process.stdin.resume();
+  // function keyHandler(ch, key) {
+  //   if (!isSnoozed && key && (key.name == 'space')) {
+  //     startSnooze();
+  //   }
+  // }
+  // // listen for the "keypress" event
+  // process.stdin.on('keypress', keyHandler);
+  // process.stdin.resume();
 
 
   function startSnooze() {
     if(!isSnoozed){
       //TODO - fix the keypress to be better
-      process.stdin.setRawMode(false);
+      //process.stdin.setRawMode(false);
       log("Snooze started");
       audioPlayer.stop();
       isSnoozed = true;
