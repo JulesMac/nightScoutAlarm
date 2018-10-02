@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const indexRouter = require('./routes/index');
+const nsRouter = require('./routes/ns');
 
 var web = function(nsMonitor){
   app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +20,7 @@ var web = function(nsMonitor){
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
   app.use('/', indexRouter(nsMonitor));
+  app.use('/ns', nsRouter(nsMonitor));
 
 
   const PORT = 3000;

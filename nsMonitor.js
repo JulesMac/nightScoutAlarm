@@ -34,9 +34,9 @@ var nsMonitor = function (){
 
 
   function periodicCheck() {
-    nightScout.getSgData()
+    nightScout.getSgData(3)
       .then(data =>{
-        log(data.timeStamp + ", average:" + data.mean + ", last: "+ data.sgSamples[0] + ", snoozed at:" + snoozeStartTime);
+        log(new Date(data.lastTimestamp) + ", average:" + data.mean + ", last: "+ data.sgSamples[0] + ", snoozed at:" + snoozeStartTime);
         if (data.mean < thresholdLow)
           triggerAlarm(snoozeTimeForLow);
         else if (data.mean > thresholdHigh)

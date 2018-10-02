@@ -18,24 +18,25 @@ function NightScout(baseUrl){
   var api = buildApi(baseUrl);
   log("Url: " + api.url);
 
-  this.getSgData = function(){
+  this.getSgData = function(sampleSize){
     return new Promise(function(resolve, reject){
       axios.get(
-        api.getSgSamples(3)
+        api.getSgSamples(sampleSize)
         //'https://bfg9000.azurewebsites.net/api/v2/ddata/at/'
         //'https://bfg9000.azurewebsites.net/api/v1/entries.json?count=3'
       )
       .then(response => {
         //var values = (response.data.sgvs.reverse().slice(0, 2).map(x => x.mgdl / 18.0));
-        var data = response.data.slice(0, meanSampleLength);
+        var data = response.data.reverse();
         var sgvs = (data.map(x => x.sgv / 18.0));
-        var timeStamp = data[0].dateString
+        var timeStamps = data.map(x => x.date);
         //log(values);
         var average = sgvs.reduce((acc, x) => acc + x) * 1.0 / sgvs.length;
         resolve( {
-          timeStamp: timeStamp,
+          timeStamps: timeStamps,
           sgSamples: sgvs,
-          mean: average
+          mean: average,
+          lastTimestamp: timeStamps[sgvs.length -1]
         });
         //
         // if ((average < thresholdLow ||average > thresholdHigh)){
