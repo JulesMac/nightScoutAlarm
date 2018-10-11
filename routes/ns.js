@@ -16,6 +16,10 @@ var ns = function(nsMonitor){
         //log(error);
       });
   });
+  router.get('/snooze', function(req, res) {
+    nsMonitor.snooze();
+    res.send("snoozed");
+  });
   return router;
 }
 
