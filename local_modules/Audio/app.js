@@ -1,6 +1,14 @@
 
 const logger = require("../Log")("audio")
 const processTreeKill =require('tree-kill')
+const moment = require('moment');
+
+function isQuiteTime(timeStamp){
+    const quietStartHour = 9
+    const quietEndHour = 20
+    const currentHour = parseFloat(timeStamp.format("HH"));
+    return (currentHour >=quietStartHour) && (currentHour <=quietEndHour)
+}
 
 function Audio(audioFile){
   var audioFile = audioFile
@@ -9,19 +17,25 @@ function Audio(audioFile){
   var audioProcess = undefined;
 
   var log = logger.log;
+  const currentTime = moment();
 
   this.play = function () {
     if(!isPlaying){
-      log("startPlaying...");
-      isPlaying = true;
-      //-o alsa requird to work on my Pi
-      audioProcess = player.play(audioFile, {omxplayer: ['-o', 'alsa']}, function(err){
-        if (err) {
-          log(err);
-          throw err;
-        }
-      });
-      return true;
+      if(!isQuiteTime(currentTime)){
+        log("startPlaying...");
+        isPlaying = true;
+        //-o alsa requird to work on my Pi
+        audioProcess = player.play(audioFile, {omxplayer: ['-o', 'alsa']}, function(err){
+          if (err) {
+            log(err);
+            throw err;
+          }
+        });
+        return true;
+      }else{
+        log("Alarm in quiet time:" + currentTime.format("hh:mm:ss"))
+        return false;
+      }
     }else {
       return false;
     }
