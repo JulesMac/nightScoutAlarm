@@ -3,7 +3,9 @@ extends layout
 block onLoadScript
   script.
     $(document).ready(function(){
-      drawSgChart("myChart");
+      drawSgChart("myChart",     {zoom: false, colour: "#ff0000"});
+      drawSgChart("myChartZoom", {zoom: true, colour: "#0000ff"});
+      $("#lastUpdate").load('/ns/lastUpdateTime')
     });
 
 block content
@@ -11,6 +13,8 @@ block content
   p Click button to snooze alarm
   button(class='button', onclick="$.get('/ns/snooze', function (r,e){})") Click
   canvas#myChart(width="100", height="50")
+  canvas#myChartZoom(width="100", height="50")
 
-  h6= `Last updated ${lastUpdated}`
-  h3= `Last reading {data.last}`
+  h3= `Last updated `
+    div#lastUpdate
+  

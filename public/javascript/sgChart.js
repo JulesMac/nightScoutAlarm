@@ -2,15 +2,15 @@
 
 
 
-function drawSgChart(target){
+function drawSgChart(target, config){
   const ctx = document.getElementById(target);
   $.ajax({
       url: '/ns/sgData',
       dataType: 'json',
     }).done(function (sgData) {
-      const minY = sgData.sgSamples.reduce((p, v) => Math.min(p, v));// * 0.90;
-      const maxY = sgData.sgSamples.reduce((p, v) => Math.max(p, v));// * 1.10;
-      const possibleTicks = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+      const minY = (config.zoom) ? sgData.sgSamples.reduce((p, v) => Math.min(p, v)) : 2;// * 0.90;
+      const maxY = (config.zoom) ? sgData.sgSamples.reduce((p, v) => Math.max(p, v)) : 22;// * 1.10;
+      const possibleTicks = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
       var smallTicks = possibleTicks.filter(x => x<=minY)
       smallTicks.splice(-1,1);
       var largeTicks = possibleTicks.filter(x => x>=maxY)
@@ -26,8 +26,8 @@ function drawSgChart(target){
               datasets: [{
                   label: 'Sensor Glucuse mmol/L',
                   data: sgData.sgSamples,
-                  borderColor: "#ff0000",
-                  backgroundColor: "#ff0000",
+                  borderColor: config.colour,
+                  backgroundColor: config.colour,
                   borderWidth: 1,
                   fill: false,
                   pointRadius: 6,

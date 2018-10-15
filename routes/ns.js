@@ -2,6 +2,7 @@
 const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
 
 const nightScout = require('../local_modules/NightScout')(nightScoutUrl);
+const moment = require('moment');
 
 var ns = function(nsMonitor){
   var express = require('express');
@@ -19,6 +20,16 @@ var ns = function(nsMonitor){
   router.get('/snooze', function(req, res) {
     nsMonitor.snooze();
     res.send("snoozed");
+  });
+  router.get('/lastUpdateTime', function(req, res) {
+    nightScout.getSgData(1)
+      .then(data =>{
+        const timestamp = moment(data.lastTimestamp).format("HH:mm:ss")
+        res.send(timestamp);
+      })
+      .catch(error => {
+        //log(error);
+      });
   });
   return router;
 }
