@@ -35,30 +35,43 @@ function drawSgChart(target, config){
               }]
           },
           options: {
-              animation:{
-                duration :0
-              },
-              scales: {
-                  xAxes: [{
-                      ticks: {
-                          display: true //this will remove only the label
-                      }
-                  }],
-                  yAxes: [{
-          					display: true,
-          					type: 'logarithmic',
-                    ticks: {
-                      min: actualMinY,
-                      max: actualMaxY,
-                        callback: function(value, index, values) {//needed to change the scientific notation results from using logarithmic scale
-                            return Number(value.toString());//pass tick values as a string into Number function
-                        }
-                    },
-                    afterBuildTicks: function(pckBarChart) {
-                      pckBarChart.ticks = ticksY;
-                      }
-          				}]
-              }
+            animation:{
+              duration :0
+            },
+            scales: {
+              xAxes: [{
+                gridLines: {
+                  color: 'rgba(128, 128, 128, 1.0)',
+                  lineWidth : 1
+                },
+                ticks: {
+                  maxTicksLimit: 10,
+                  fontSize: 20,
+                  fontColor: 'rgba(255, 255, 255, 1.0)',
+                  display: true //this will remove only the label
+                }
+              }],
+              yAxes: [{
+      					display: true,
+                type: 'logarithmic',
+                gridLines: {
+                  color: 'rgba(128, 128, 128, 1.0)',
+                  lineWidth : 1
+                },
+                ticks: {
+                  fontSize: 25,
+                  fontColor: 'rgba(255, 255, 255, 1.0)',
+                  min: actualMinY,
+                  max: actualMaxY,
+                    callback: function(value, index, values) {//needed to change the scientific notation results from using logarithmic scale
+                        return Number(value.toString());//pass tick values as a string into Number function
+                    }
+                },
+                afterBuildTicks: function(pckBarChart) {
+                  pckBarChart.ticks = ticksY;
+                  }
+      				}]
+            }
           }
       }
     );

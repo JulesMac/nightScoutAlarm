@@ -5,7 +5,7 @@ var snoozer = function(nsMonitor){
 
   /* GET users listing. */
   router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Florence SG' });
     //res.send('respond with a resource');
   });
 
