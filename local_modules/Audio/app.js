@@ -3,7 +3,7 @@ const logger = require("../Log")("audio")
 const processTreeKill =require('tree-kill')
 const moment = require('moment');
 
-function isQuiteTime(timeStamp){
+function isQuietTime(timeStamp){
     const quietStartHour = 9
     const quietEndHour = 20
     const currentHour = parseFloat(timeStamp.format("HH"));
@@ -17,11 +17,11 @@ function Audio(audioFile){
   var audioProcess = undefined;
 
   var log = logger.log;
-  const currentTime = moment();
 
   this.play = function () {
+    const currentTime = moment();
     if(!isPlaying){
-      if(!isQuiteTime(currentTime)){
+      if(!isQuietTime(currentTime)){
         log("startPlaying...");
         isPlaying = true;
         //-o alsa requird to work on my Pi
