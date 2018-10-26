@@ -5,15 +5,18 @@ block onLoadScript
     $(document).ready(function(){
       drawSgChart("myChart",     {zoom: false, colour: "#ff0000"});
       drawSgChart("myChartZoom", {zoom: true, colour: "#0000ff"});
-      $("#lastUpdate").load('/ns/lastUpdateTime')
+      $("#lastUpdate").load('/ns/lastUpdateTime');
+      $("#sgLevel").load('/ns/sgLevel');
     });
 
 block content
   h1= `${title}`
-  p Click button to snooze alarm
-  button(class='button', onclick="$.get('/ns/snooze', function (r,e){})") Click
+  button(class='button', onclick="$.get('/ns/snooze', function (r,e){})") Snooze
   canvas#myChart(width="100", height="50")
   canvas#myChartZoom(width="100", height="50")
 
   h1= `Last updated `
     span#lastUpdate
+  h1= `Sensor Glucose `
+    span#sgLevel
+  button(class='button', onclick="location.reload(true)") Reload

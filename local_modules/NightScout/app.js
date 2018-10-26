@@ -36,7 +36,8 @@ function NightScout(baseUrl){
           timeStamps: timeStamps,
           sgSamples: sgvs,
           mean: average,
-          lastTimestamp: timeStamps[sgvs.length -1]
+          lastTimestamp: timeStamps[sgvs.length -1],
+          lastSg: sgvs[sgvs.length -1]
         });
         //
         // if ((average < thresholdLow ||average > thresholdHigh)){

@@ -31,6 +31,16 @@ var ns = function(nsMonitor){
         //log(error);
       });
   });
+  router.get('/sgLevel', function(req, res) {
+    nightScout.getSgData(1)
+      .then(data =>{
+        const sgLevel = "" + Math.round(data.lastSg * 10) / 10; //.format("HH:mm:ss")
+        res.send(sgLevel);
+      })
+      .catch(error => {
+        //log(error);
+      });
+  });
   return router;
 }
 
