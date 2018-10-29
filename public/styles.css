@@ -3,6 +3,10 @@ html {
   background-color: black;
 }
 
+.heading{
+  font-size: 400%;
+}
+
 .button {
   padding: 15px 25px;
   font-size: 24px;

@@ -19,13 +19,14 @@ function drawSgChart(target, config){
       const ticksY = possibleTicks.filter(x => !ticksToRemove.has(x))
       const actualMinY = ticksY[0];
       const actualMaxY = ticksY[ticksY.length-1];
+      const realData = Array.from(sgData.sgSamples.entries(), pair => ({x:sgData.timeStamps[pair[0]], y:pair[1] })) ;
       const myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: sgData.timeStamps.map(x =>timeString(new Date(x))),
+              labels: sgData.timeStamps, //.map(x =>timeString(new Date(x))),
               datasets: [{
                   label: 'Sensor Glucuse mmol/L',
-                  data: sgData.sgSamples,
+                  data: realData, //sgData.sgSamples.entries().map(v => {x: sgData.timeStamps(v.)}),
                   borderColor: config.colour,
                   backgroundColor: config.colour,
                   borderWidth: 1,
@@ -40,12 +41,19 @@ function drawSgChart(target, config){
             },
             scales: {
               xAxes: [{
+                 type: 'time',
+                 time: {
+                    unit: 'minute',
+                    stepSize: 15,
+                    distribution: 'linear'
+                },
                 gridLines: {
                   color: 'rgba(128, 128, 128, 1.0)',
                   lineWidth : 1
                 },
                 ticks: {
-                  maxTicksLimit: 10,
+                  source: 'auto',
+                  maxTicksLimit: 5,
                   fontSize: 20,
                   fontColor: 'rgba(255, 255, 255, 1.0)',
                   display: true //this will remove only the label
