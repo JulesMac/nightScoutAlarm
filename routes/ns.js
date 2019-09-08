@@ -1,12 +1,11 @@
 
-const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
 
-const nightScout = require('../local_modules/NightScout')(nightScoutUrl);
 const moment = require('moment');
 
-var ns = function(nsMonitor){
-  var express = require('express');
-  var router = express.Router();
+const ns = function(nsMonitor, nightScout, logFactory){
+  const log = logFactory.createLogger("route-ns").log;
+  const express = require('express');
+  const router = express.Router();
 
   router.get('/sgData', function(req, res) {
     nightScout.getSgData(25)
@@ -14,7 +13,7 @@ var ns = function(nsMonitor){
         res.send(data);
       })
       .catch(error => {
-        //log(error);
+        log(error);
       });
   });
   router.get('/snooze', function(req, res) {
@@ -28,7 +27,7 @@ var ns = function(nsMonitor){
         res.send(timestamp);
       })
       .catch(error => {
-        //log(error);
+        log(error);
       });
   });
   router.get('/sgLevel', function(req, res) {
@@ -38,8 +37,12 @@ var ns = function(nsMonitor){
         res.send(sgLevel);
       })
       .catch(error => {
-        //log(error);
+        log(error);
       });
+  });
+  router.get('/logs', function(req, res) {
+    const html = "<table><tr><td>" + logFactory.getEvents().reduce((a, b) => {return a + "</td></tr><tr><td>" + b}) + "</td></tr></table>";
+    res.send(html);
   });
   return router;
 }

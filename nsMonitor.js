@@ -1,23 +1,20 @@
 
 
-var snoozeTimeForHigh = 60 * 60 * 1000 ;
-var snoozeTimeForLow = 15 * 60 * 1000;
-var nightScoutPollFrequency = 10000;
-const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
+const snoozeTimeForHigh = 60 * 60 * 1000 ;
+const snoozeTimeForLow = 15 * 60 * 1000;
+const nightScoutPollFrequency = 10000;
 
 
-var nsMonitor = function (){
+const nsMonitor = function (nightScout, logFactory){
 
-  var thresholdLow = 4.0;
-  var thresholdHigh = 9.0;
+  const thresholdLow = 4.0;
+  const thresholdHigh = 9.0;
 
 
-  var logger = require("./local_modules/Log")("main");
-  var log = logger.log;
-  var alartSound = './alarm.m4a';
+  const log = logFactory.createLogger("main").log;
+  const alartSound = './alarm.m4a';
 
-  const alarm = require("./local_modules/Alarm")(alartSound);
-  const nightScout = require('./local_modules/NightScout')(nightScoutUrl);
+  const alarm = require("./local_modules/Alarm")(alartSound,logFactory);
 
 
   function periodicCheck() {

@@ -11,7 +11,8 @@ const app = express();
 const indexRouter = require('./routes/index');
 const nsRouter = require('./routes/ns');
 
-var web = function(nsMonitor){
+const web = function(nsMonitor, nightScout, logFactory){
+  const log = logFactory.createLogger("web").log;
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'pug');
   app.use(logger('dev'));
@@ -19,13 +20,13 @@ var web = function(nsMonitor){
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
-  app.use('/', indexRouter(nsMonitor));
-  app.use('/ns', nsRouter(nsMonitor));
+  app.use('/', indexRouter(nsMonitor, logFactory));
+  app.use('/ns', nsRouter(nsMonitor, nightScout, logFactory));
 
 
   const PORT = 3000;
   app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}!`);
+    log(`Floppet Alarm listening on port ${PORT}`);
   });
 }
 module.exports = web;

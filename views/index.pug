@@ -7,6 +7,7 @@ block onLoadScript
       drawSgChart("myChartZoom", {zoom: true, colour: "#0000ff"});
       $("#lastUpdate").load('/ns/lastUpdateTime');
       $("#sgLevel").load('/ns/sgLevel');
+      $("#logs").load('/ns/logs');
     });
 
 block content
@@ -20,3 +21,5 @@ block content
     span=', SG: '
     span#sgLevel
   button(class='button', onclick="location.reload(true)") Reload
+  button(class='button', onclick="$.get('/ns/logs', function (r,e){})") Logs
+  span#logs

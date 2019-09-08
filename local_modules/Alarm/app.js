@@ -2,16 +2,16 @@
 
 
 
-function Alarm(audioFile){
-  const audioPlayer = require("../Audio")(audioFile);
-  const logger = require("../Log")("alarm");
+function Alarm(audioFile, logFactory){
+  const audioPlayer = require("../Audio")(audioFile, logFactory);
+  const log = logFactory.createLogger("alarm").log;
   const time = require("../Time");
-  const log = logger.log;
-
+  log("Alarm initialised");
+  
   var isSnoozed = false;
   var snoozeTime = 0;
   var snoozeStartTime   = undefined;
-  var maxAlarmPlayTime  = 300000;
+  const maxAlarmPlayTime  = 300000;
 
   this.triggerAlarm = function(timeToSnooze) {
     if(!isSnoozed){
@@ -42,6 +42,6 @@ function Alarm(audioFile){
     }
   }
 
-module.exports = function(audioFile){
-  return new Alarm(audioFile)
+module.exports = function(audioFile, logFactory){
+  return new Alarm(audioFile, logFactory)
 }

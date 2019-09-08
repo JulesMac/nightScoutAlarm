@@ -1,5 +1,4 @@
 
-const logger = require("../Log")("audio")
 const processTreeKill =require('tree-kill')
 const moment = require('moment');
 
@@ -10,13 +9,14 @@ function isQuietTime(timeStamp){
     return (currentHour >=quietStartHour) && (currentHour <=quietEndHour)
 }
 
-function Audio(audioFile){
-  var audioFile = audioFile
-  var player =require('play-sound')(opts = {})
+function Audio(audioFile1, logFactory){
+  const audioFile = audioFile1
+  const player =require('play-sound')(opts = {})
   var isPlaying = false;
   var audioProcess = undefined;
 
-  var log = logger.log;
+  const log = logFactory.createLogger("audio").log;
+  log("Audio initialised");
 
   this.play = function () {
     const currentTime = moment();
@@ -41,7 +41,6 @@ function Audio(audioFile){
     }
   }
 
-
   this.stop = function () {
     if(isPlaying){
       log("stop Playing...");
@@ -54,8 +53,6 @@ function Audio(audioFile){
 }
 
 
-
-
-module.exports = function(audioFile){
-  return new Audio(audioFile)
+module.exports = function(audioFile, logFactory){
+  return new Audio(audioFile, logFactory)
 }
