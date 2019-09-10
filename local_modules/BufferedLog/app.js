@@ -9,7 +9,7 @@ function BufferedLog(sink, compont){
 
 function makeLogFactory() {
   const time = require("../Time");
-  const logSize = 10;
+  const logSize = 1000;
   let end = 0;
   let events = [];
   
