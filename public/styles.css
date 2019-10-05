@@ -27,3 +27,27 @@ html {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+.logger{
+  width: 500px;
+  border-collapse: collapse;
+}
+
+.logger td{
+  border: 1px solid black;
+}
+
+.logger tr:nth-child(even){
+  background-color: #e4ffb7;
+}
+
+.logger tr:nth-child(odd){
+  background-color: #efffd2;
+}
+
+.header{
+  text: center;
+  font-weight: bolder;
+  background-color: #80b327;
+  color: white;
+}

@@ -40,9 +40,8 @@ const ns = function(nsMonitor, nightScout, logFactory){
         log(error);
       });
   });
-  router.get('/logs', function(req, res) {
-    const html = "<table><tr><td>" + logFactory.getEvents().reduce((a, b) => {return a + "</td></tr><tr><td>" + b}) + "</td></tr></table>";
-    res.send(html);
+  router.get('/log', function(req, res) {
+    res.send(logFactory.getEventsAsStrings());
   });
   return router;
 }

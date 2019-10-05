@@ -7,31 +7,45 @@ function BufferedLog(sink, compont){
 }
 
 
+
+
+
 function makeLogFactory() {
   const time = require("../Time");
   const logSize = 1000;
   let end = 0;
   let events = [];
   
-  this.eventToString = function(event){
-    return event.time + " - " + event.component + " - " + event.mes;
-  }
-
-  this.getEvents = function() {
+  function getEvents() {
     const results = [];
     for(i = end; i< events.length; i++){
       const event = events[i]
-      results.push(eventToString(event));
+      results.push(event);
     }
     for(i = 0; i< end; i++){
       const event = events[i]
-      results.push(eventToString(event));
+      results.push(event);
     }
     return results;
   }
 
-  this.addEvent =function(component, message){
-    const event = {time: time.now(), component: component, mes: message};
+  this.eventToString = function(event){
+    return event.time + " - " + event.component + " - " + event.message;
+  }
+
+  this.getEvents = function() {
+    return getEvents();
+  }
+
+  this.getEventsAsStrings = function() {
+    return getEvents().map(event => eventToString(event));
+  }
+
+  this.addEvent =function(component, msg){
+    const event = {
+        time: time.now(), 
+        component: component, 
+        message: msg};
     if(events.length < logSize)
       events.push(event)
     else
