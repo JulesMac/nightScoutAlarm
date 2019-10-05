@@ -4,6 +4,7 @@ const snoozeTimeForHigh = 60 * 60 * 1000 ;
 const snoozeTimeForLow = 15 * 60 * 1000;
 const nightScoutPollFrequency = 10000;
 
+const moment = require('moment');
 
 const nsMonitor = function (nightScout, logFactory){
 
@@ -20,7 +21,7 @@ const nsMonitor = function (nightScout, logFactory){
   function periodicCheck() {
     nightScout.getSgData(3)
       .then(data =>{
-        log(new Date(data.lastTimestamp) + ", average:" + data.mean + ", last: "+ data.sgSamples[0] + ", snoozed at:" + "--snoozeStartTime--");
+        log("sample:" + moment(new Date(data.lastTimestamp)).format("DD-MM-YYYY HH:mm:ss") + ", average:" + data.mean + ", last: "+ data.sgSamples[0]);
         if (data.mean < thresholdLow)
           alarm.triggerAlarm(snoozeTimeForLow)
         else if (data.mean > thresholdHigh)

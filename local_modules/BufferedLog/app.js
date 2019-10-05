@@ -1,12 +1,14 @@
 
+
+const moment = require('moment');
+
+
 function BufferedLog(sink, compont){
   const component = (compont == undefined) ? "<Undefined>" : compont;
   this.log = function(message){
     sink.addEvent(component, message);
   }
 }
-
-
 
 
 
@@ -43,7 +45,7 @@ function makeLogFactory() {
 
   this.addEvent =function(component, msg){
     const event = {
-        time: time.now(), 
+        time: moment(time.now()).format("YYYY MM DD HH:mm:ss"), 
         component: component, 
         message: msg};
     if(events.length < logSize)

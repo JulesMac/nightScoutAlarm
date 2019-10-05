@@ -2,7 +2,7 @@
 
 
 function Time(){
-  this.now = function(){return Date();}
+  this.now = function(){return new Date();}
 }
 
 module.exports = new Time()

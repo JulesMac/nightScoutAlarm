@@ -29,24 +29,28 @@ html {
 }
 
 .logger{
-  width: 500px;
+  color: #fffafa;
   border-collapse: collapse;
 }
 
 .logger td{
-  border: 1px solid black;
+  border-style: none;
+  padding-right: 10px;
+}
+
+.logger th{
+  background-color: #3f3f3f;
 }
 
 .logger tr:nth-child(even){
-  background-color: #e4ffb7;
+  background-color: #000000;
 }
 
 .logger tr:nth-child(odd){
-  background-color: #efffd2;
+  background-color: #1a1a1a;
 }
 
 .header{
-  text: center;
   font-weight: bolder;
   background-color: #80b327;
   color: white;

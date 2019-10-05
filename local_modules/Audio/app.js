@@ -22,13 +22,13 @@ function Audio(audioFile1, logFactory){
     const currentTime = moment();
     if(!isPlaying){
       if(!isQuietTime(currentTime)){
-        log("startPlaying...");
+        log("StartPlaying...");
         isPlaying = true;
         //-o alsa requird to work on my Pi
         audioProcess = player.play(audioFile, {omxplayer: ['-o', 'alsa']}, function(err){
           if (err) {
-            log(err);
-            throw err;
+            log("Error what attempting to use Audio player: " + err);
+            return false;
           }
         });
         return true;
@@ -37,6 +37,7 @@ function Audio(audioFile1, logFactory){
         return false;
       }
     }else {
+      log("Already playing alarm")
       return false;
     }
   }
