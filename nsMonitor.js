@@ -21,7 +21,7 @@ const nsMonitor = function (nightScout, logFactory){
   function periodicCheck() {
     nightScout.getSgData(3)
       .then(data =>{
-        log("sample:" + moment(new Date(data.lastTimestamp)).format("DD-MM-YYYY HH:mm:ss") + ", average:" + data.mean + ", last: "+ data.sgSamples[0]);
+        log("sample:" + moment(new Date(data.lastTimestamp)).format("DD-MM HH:mm:ss") + ", average:" + data.mean.toFixed(1) + ", last: "+ data.sgSamples[0].toFixed(1));
         if (data.mean < thresholdLow)
           alarm.triggerAlarm(snoozeTimeForLow)
         else if (data.mean > thresholdHigh)
