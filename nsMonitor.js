@@ -8,7 +8,6 @@ const moment = require('moment');
 const nsMonitor = function (nightScout, logFactory){
 
 
-
   const log = logFactory.createLogger("main").log;
   const alartSound = './alarm.m4a';
 

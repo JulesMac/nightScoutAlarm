@@ -2,7 +2,10 @@
 
 
 function Config(){
-  this.webTitle = "Floppet SG";
+  this.web = {
+    port : 3000,
+    title : "Floppet SG"
+  };
 
   this.nsMonitor = {
     snoozeTimeForHigh : 60 * 60 * 1000,
@@ -13,7 +16,7 @@ function Config(){
   };
 
   this.logger = {
-    logSize : 1000
+    logSize : 5000
   }
 }
 

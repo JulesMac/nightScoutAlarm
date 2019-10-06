@@ -1,5 +1,7 @@
+
+const config = require('./Config').web;
+
 const express = require('express');
-//var rp = require('request-promise');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -24,7 +26,7 @@ const web = function(nsMonitor, nightScout, logFactory){
   app.use('/ns', nsRouter(nsMonitor, nightScout, logFactory));
 
 
-  const PORT = 3000;
+  const PORT = config.port;
   app.listen(PORT, () => {
     log(`Floppet Alarm listening on port ${PORT}`);
   });
