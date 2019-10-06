@@ -33,7 +33,7 @@ function Audio(audioFile1, logFactory){
         });
         return true;
       }else{
-        log("Alarm in quiet time:" + currentTime.format("hh:mm:ss"))
+        log("Alarm in quiet time:" + currentTime.format("HH:mm:ss"))
         return false;
       }
     }else {

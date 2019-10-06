@@ -3,7 +3,7 @@ const component = function(logFactory){
   const express = require('express');
   const router = express.Router();
 
-  const config = require('../local_modules/Config');
+  const config = require('../Config');
 
   
   /* GET users listing. */

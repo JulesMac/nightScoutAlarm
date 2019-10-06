@@ -1,5 +1,5 @@
 
-
+const config = require("../../Config").logger;
 const moment = require('moment');
 
 
@@ -14,7 +14,7 @@ function BufferedLog(sink, compont){
 
 function makeLogFactory() {
   const time = require("../Time");
-  const logSize = 1000;
+  const logSize = config.logSize;
   let end = 0;
   let events = [];
   
@@ -63,6 +63,8 @@ function makeLogFactory() {
     return new BufferedLog(this, component)
   }
 
+  
+  this.addEvent("logger", "Log size: " + logSize);
   return this;
 }
 
