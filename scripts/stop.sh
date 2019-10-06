@@ -1,2 +1,2 @@
-pkill -f "node app.js"
+sudo pkill -f "node app.js"
 
