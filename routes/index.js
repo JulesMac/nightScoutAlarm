@@ -1,15 +1,21 @@
 
-const snoozer = function(nsMonitor, logFactory){
+const component = function(logFactory){
   const express = require('express');
   const router = express.Router();
+
+  const config = require('../local_modules/Config');
 
   
   /* GET users listing. */
   router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Florence SG', log: logFactory.getEvents() });
+    res.render('index', { title: config.webTitle });
   });
+  router.get('/logs', function(req, res, next) {
+    res.render('logs', { title: config.webTitle, log: logFactory.getEvents() });
+  });
+
 
   return router;
 }
 
-module.exports = snoozer;
+module.exports = component;

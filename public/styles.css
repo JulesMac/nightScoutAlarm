@@ -9,7 +9,7 @@ html {
 
 .button {
   padding: 15px 25px;
-  font-size: 24px;
+  font-size: 30px;
   text-align: center;
   cursor: pointer;
   outline: none;
@@ -17,7 +17,8 @@ html {
   background-color: #4CAF50;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+  box-shadow: 7px 7px 4px 0px #999;
+  margin-left: 20px;
 }
 
 .button:hover {background-color: #3e8e41}
@@ -54,4 +55,8 @@ html {
   font-weight: bolder;
   background-color: #80b327;
   color: white;
+}
+
+a:link{
+  text-decoration: none
 }

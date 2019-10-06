@@ -10,8 +10,11 @@ block onLoadScript
     });
 
 block content
-  div(class='heading')= `${title}`
-  button(class='button', onclick="$.get('/ns/snooze', function (r,e){})") Snooze
+  span(class='heading')= `${title}`
+  a(class='button' href='/logs') Logs
+  a(class='button', href="/") Reload
+  a(class='button', onclick="$.get('/ns/snooze', function (r,e){})", style={"margin-left": "60px"}) Snooze
+  p
   canvas#myChart(width="100", height="50")
   canvas#myChartZoom(width="100", height="50")
 
@@ -19,16 +22,4 @@ block content
     span#lastUpdate
     span=', SG: '
     span#sgLevel
-  button(class='button', onclick="location.reload(true)") Reload
-  p 
-  table(class='logger')
-    tr
-      th Time
-      th Component
-      th Message
-    each row in log      
-      tr
-        td= row.time
-        td= row.component
-        td= row.message
-
+  

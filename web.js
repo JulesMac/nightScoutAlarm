@@ -20,7 +20,7 @@ const web = function(nsMonitor, nightScout, logFactory){
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
-  app.use('/', indexRouter(nsMonitor, logFactory));
+  app.use('/', indexRouter(logFactory));
   app.use('/ns', nsRouter(nsMonitor, nightScout, logFactory));
 
 
