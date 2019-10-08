@@ -1,4 +1,4 @@
 ~/stop.sh
 ~/pull.sh
-~/start.sh
+~/reboot.sh
 
