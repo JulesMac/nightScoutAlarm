@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const app_1 = require("./local_modules/BufferedLog/app");
+const app_2 = require("./local_modules/NightScout/app");
+const index_1 = require("./nsMonitor/index");
+const index_2 = require("./Web/index");
+const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
+//const nightScoutUrl = 'http://localhost:8080';
+const logFactory = new app_1.LogFactory();
+const nightScout = new app_2.NightScout(nightScoutUrl, logFactory);
+const nsMonitor = new index_1.NsMonitor(nightScout, logFactory);
+const web = index_2.web(nsMonitor, nightScout, logFactory);

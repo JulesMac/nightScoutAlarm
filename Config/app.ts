@@ -1,13 +1,12 @@
 
 
-
-function Config(){
-  this.web = {
+class Config{
+  web = {
     port : 3000,
     title : "Floppet SG"
   };
 
-  this.nsMonitor = {
+  nsMonitor = {
     snoozeTimeForHigh : 60 * 60 * 1000,
     snoozeTimeForLow : 15 * 60 * 1000,
     nightScoutPollFrequency : 10000,
@@ -15,9 +14,9 @@ function Config(){
     thresholdHigh : 9.0
   };
 
-  this.logger = {
+  logger = {
     logSize : 5000
   }
 }
 
-module.exports = new Config()
+export = new Config

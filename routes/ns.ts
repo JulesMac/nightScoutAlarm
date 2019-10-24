@@ -1,11 +1,15 @@
 
 
-const moment = require('moment');
+import moment from 'moment'
+import express from 'express'
+import {NsMonitor} from '../nsMonitor/index'
+import {NightScout} from '../local_modules/NightScout/app'
+import {LogFactory} from '../local_modules/BufferedLog/app'
 
-const ns = function(nsMonitor, nightScout, logFactory){
+
+export const ns = function(nsMonitor : NsMonitor, nightScout: NightScout, logFactory: LogFactory){
   const log = logFactory.createLogger("route-ns").log;
-  const express = require('express');
-  const router = express.Router();
+    const router = express.Router();
 
   router.get('/sgData', function(req, res) {
     nightScout.getSgData(25)
@@ -18,7 +22,7 @@ const ns = function(nsMonitor, nightScout, logFactory){
   });
   router.get('/snooze', function(req, res) {
     nsMonitor.snooze();
-    res.send("snoozed");
+    res.send("snoozed!");
   });
   router.get('/lastUpdateTime', function(req, res) {
     nightScout.getSgData(1)
@@ -45,5 +49,3 @@ const ns = function(nsMonitor, nightScout, logFactory){
   });
   return router;
 }
-
-module.exports = ns;

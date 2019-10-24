@@ -1,11 +1,17 @@
 
-const axios = require('axios');
+import axios from 'axios'
+import {Logger, LogFactory} from "../BufferedLog/app"
+import {Promise} from 'bluebird'
 const meanSampleLength = 2;
 
-function buildApi(baseUrl) {
+interface NsApi {
+  getSgSamples : (sampleCount: number) => string
+}
+
+function buildApi(baseUrl :string): NsApi {
   return {
-    url: baseUrl,
-    getSgSamples : function (sampleCount) {
+    //url: baseUrl,
+    getSgSamples : function (sampleCount: number) {
       const url = baseUrl + '/api/v1/entries.json?count=' + sampleCount;
       //const url = baseUrl + '/nsData.js?count=' + sampleCount;
       return url;
@@ -13,17 +19,44 @@ function buildApi(baseUrl) {
   }
 };
 
-function NightScout(baseUrl, logFactory){
-  const log = logFactory.createLogger("nightScout").log;
+interface Sample{
+  sgv: number
+  date: number
+}
 
-  log("started NS")
+export interface SgResponse
+  {
+    timeStamps: number[],
+    sgSamples: number[],
+    mean: number,
+    lastTimestamp: number,
+    lastSg: number
+  }
+
+
+export class NightScout{
   
-  var api = buildApi(baseUrl);
-  log("Url: " + api.url);
+  readonly baseUrl : string
+  readonly logFactory :LogFactory
+  readonly log: (message: string) => void;
+  readonly api: NsApi;
 
-  this.getSgData = function(sampleSize){
+  constructor(baseUrl : string, logFactory :LogFactory){
+    this.baseUrl = baseUrl
+    this.logFactory = logFactory
+    this.log = logFactory.createLogger("nightScout").log;
+    this.api = buildApi(this.baseUrl);
+    this.log("started NS");
+  }
+  
+  
+  
+  //log("Url: " + api.url);
+
+  getSgData(sampleSize: number) : Promise<SgResponse> {
+    let api = this.api
     return new Promise(function(resolve, reject){
-      axios.get(
+      axios.get<Sample[]>(
         api.getSgSamples(sampleSize)
        //'https://bfg9000.azurewebsites.net/api/v2/ddata/at/'
         //'https://bfg9000.azurewebsites.net/api/v1/entries.json?count=3'
@@ -55,6 +88,6 @@ function NightScout(baseUrl, logFactory){
   }
 }
 
-module.exports = function(baseUrl, logFactory){
+export function create(baseUrl : string, logFactory: LogFactory){
   return new NightScout(baseUrl, logFactory)
 }
