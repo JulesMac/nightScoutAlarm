@@ -9,7 +9,7 @@ export class NsMonitor{
   private readonly config = configRoot.nsMonitor
   private readonly nightScout : NightScout
   private readonly log : (message: string) => void 
-  private readonly alartSound = './alarm.m4a';
+  private readonly alartSound = '../../alarm.m4a';
 
   readonly alarm : Alarm
 
