@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "compile": "tsc -p . ",
-    "html": "cp -r ./public/ ./build/public/",
-    "views": "cp -r ./views/ ./build/views/",
+    "html": "cp -r ./public/ ./build/Release/public/",
+    "views": "cp -r ./views/ ./build/Release/views/",
     "build": "npm run compile && npm run views && npm run html"
   },
   "author": "",
