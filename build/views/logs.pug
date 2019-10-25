@@ -1,0 +1,21 @@
+extends layout
+
+block onLoadScript
+  script.
+    $(document).ready(function(){
+    });
+
+block content
+  span(class='heading')= `${title}`
+  a(class='button' href='/') Charts
+  p 
+  table(class='logger')
+    tr
+      th Time
+      th Component
+      th Message
+    each row in log      
+      tr
+        td= row.time
+        td= row.component
+        td= row.message

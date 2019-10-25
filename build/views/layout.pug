@@ -1,0 +1,19 @@
+//- layout.pug
+
+html
+  head
+    title #{title}
+    link(rel='stylesheet', href='/styles.css')
+    link(rel="apple-touch-icon" href="/images/HomeScreenImage.png")
+    meta(name="apple-mobile-web-app-title" content="Floppit Alarm")
+    meta(name='apple-mobile-web-app-capable' content='yes')
+    block scripts
+    script(src='/javascript/moment.min.js')
+    script(src='/javascript/Chart.js')
+    script(src='/javascript/utils.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    script(src='/javascript/sgChart.js')
+    block onLoadScript
+
+  body
+    block content

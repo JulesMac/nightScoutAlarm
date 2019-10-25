@@ -17,13 +17,13 @@ exports.web = function (nsMonitor, nightScout, logFactory) {
     const config = config_1.default.web;
     const accessLogStream = fs_1.default.createWriteStream(path_1.default.join(__dirname, '../../access.log'), { flags: 'a' });
     const log = logFactory.createLogger("web").log;
-    app.set('views', path_1.default.join(__dirname, '../../views'));
+    app.set('views', path_1.default.join(__dirname, '../views'));
     app.set('view engine', 'pug');
     app.use(morgan_1.default('dev', { stream: accessLogStream }));
     app.use(body_parser_1.default.json());
     app.use(body_parser_1.default.urlencoded({ extended: false }));
     app.use(cookie_parser_1.default());
-    app.use(express_1.default.static(path_1.default.join(__dirname, '../../public')));
+    app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
     app.use('/', index_1.component(logFactory));
     app.use('/ns', ns_1.ns(nsMonitor, nightScout, logFactory));
     const PORT = config.port;

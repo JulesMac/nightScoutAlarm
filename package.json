@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "tsc -p . ",
     "html": "cp -r ./public/ ./build/public/",
-    "views": "cp -r *.pug ./build",
+    "views": "cp -r ./views/ ./build/views/",
     "build": "npm run compile && npm run views && npm run html"
   },
   "author": "",
