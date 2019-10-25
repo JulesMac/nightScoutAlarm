@@ -1,4 +1,4 @@
-import configRoot from "../Config/app"
+import configRoot from "../Config/config"
 
 import express from 'express'
 import path from 'path'
@@ -6,13 +6,13 @@ import favicon from 'serve-favicon'
 import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
-import {NsMonitor} from '../nsMonitor'
-import {NightScout} from '../local_modules/NightScout/app'
-import {LogFactory} from '../local_modules/BufferedLog/app'
+import {NsMonitor} from '../util/nsMonitor'
+import {NightScout} from '../util/nightScout'
+import {LogFactory} from '../util/logger'
 
 
-import {component as indexRouter} from '../routes/index';
-import {ns as nsRouter} from '../routes/ns';
+import {component as indexRouter} from './routes/index';
+import {ns as nsRouter} from './routes/ns';
 import fs from 'fs'
 
 
@@ -22,11 +22,6 @@ export const web = function(nsMonitor:NsMonitor, nightScout:NightScout, logFacto
   const app = express();
 
   const config = configRoot.web
-
-  console.log(path.join(__dirname, 'access.log'));
-  console.log(path.join(__dirname, 'access.log'))
-  console.log(path.join(__dirname, 'access.log'))
-  console.log(path.join(__dirname, 'access.log'))
 
   const accessLogStream = fs.createWriteStream(path.join(__dirname, '../../access.log'), { flags: 'a' })
 

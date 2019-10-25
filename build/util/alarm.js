@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = require("../Audio/app"); //(audioFile, logFactory);
-const app_2 = require("../Time/app");
+const audio_1 = require("./audio"); //(audioFile, logFactory);
+const time_1 = require("./time");
 class Alarm {
     constructor(audioFile, logFactory) {
         this.isSnoozed = false;
@@ -12,7 +12,7 @@ class Alarm {
             if (!this.isSnoozed) {
                 this.audioPlayer.stop();
                 this.isSnoozed = true;
-                this.snoozeStartTime = app_2.Time.now();
+                this.snoozeStartTime = time_1.Time.now();
                 setTimeout(() => {
                     this.log("Snooze ended");
                     this.isSnoozed = false;
@@ -20,7 +20,7 @@ class Alarm {
                 this.log("Set snooze timer");
             }
         };
-        this.audioPlayer = new app_1.Audio(audioFile, logFactory);
+        this.audioPlayer = new audio_1.Audio(audioFile, logFactory);
         this.log = logFactory.createLogger("alarm").log;
         this.log("Alarm initialised");
     }

@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import {Logger, LogFactory} from "../BufferedLog/app"
+import {Logger, LogFactory} from "./logger"
 import {Promise} from 'bluebird'
 const meanSampleLength = 2;
 

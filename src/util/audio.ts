@@ -1,7 +1,7 @@
 
 import processTreeKill from 'tree-kill'
 import moment, { Moment } from 'moment'
-import {Logger, LogFactory} from '../BufferedLog/app';
+import {Logger, LogFactory} from './logger';
 import soundPlayer from "play-sound"
 
 function isQuietTime(timeStamp: Moment){

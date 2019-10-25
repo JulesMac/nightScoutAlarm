@@ -1,6 +1,6 @@
-import {Audio} from "../Audio/app" //(audioFile, logFactory);
-import {Logger, LogFactory} from "../BufferedLog/app"
-import {Time} from "../Time/app"
+import {Audio} from "./audio" //(audioFile, logFactory);
+import {Logger, LogFactory} from "./logger"
+import {Time} from "./time"
 
 
 

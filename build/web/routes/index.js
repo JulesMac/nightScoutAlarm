@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const app_1 = __importDefault(require("../Config/app"));
+const config_1 = __importDefault(require("../../Config/config"));
 exports.component = function (logFactory) {
-    const config = app_1.default.web;
+    const config = config_1.default.web;
     const router = express_1.default.Router();
     /* GET users listing. */
     router.get('/', (req, res, next) => {

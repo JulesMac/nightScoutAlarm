@@ -1,8 +1,8 @@
 
-import {LogFactory} from "./local_modules/BufferedLog/app"
-import {NightScout} from './local_modules/NightScout/app'
-import {NsMonitor} from './nsMonitor/index'
-import {web as theWeb} from "./Web/index"
+import {LogFactory} from "./util/logger"
+import {NightScout} from './util/nightScout'
+import {NsMonitor} from './util/nsMonitor'
+import {web as theWeb} from "./web/index"
 
 
 const nightScoutUrl = 'https://bfg9000.azurewebsites.net';

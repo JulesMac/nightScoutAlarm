@@ -2,9 +2,9 @@
 
 import moment from 'moment'
 import express from 'express'
-import {NsMonitor} from '../nsMonitor/index'
-import {NightScout} from '../local_modules/NightScout/app'
-import {LogFactory} from '../local_modules/BufferedLog/app'
+import {NsMonitor} from '../../util/nsMonitor'
+import {NightScout} from '../../util/nightScout'
+import {LogFactory} from '../../util/logger'
 
 
 export const ns = function(nsMonitor : NsMonitor, nightScout: NightScout, logFactory: LogFactory){

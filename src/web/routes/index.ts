@@ -1,7 +1,7 @@
 
 import express from 'express';
-import configRoot from '../Config/app'
-import {LogFactory} from '../local_modules/BufferedLog/app'
+import configRoot from '../../Config/config'
+import {LogFactory} from '../../util/logger'
 
 
 export const component = function(logFactory : LogFactory){

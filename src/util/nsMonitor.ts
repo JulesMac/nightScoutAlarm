@@ -1,7 +1,7 @@
-import { LogFactory } from "../local_modules/BufferedLog/app";
-import {NightScout, SgResponse} from "../local_modules/NightScout/app"
-import {Alarm} from "../local_modules/Alarm/app"
-import configRoot from '../Config/app'
+import { LogFactory } from "./logger";
+import {NightScout, SgResponse} from "./nightScout"
+import {Alarm} from "./alarm"
+import configRoot from '../Config/config'
 import moment from 'moment'
 
 export class NsMonitor{

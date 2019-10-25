@@ -4,8 +4,10 @@
   "description": "play app",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
-    "tsc": "tsc"
+    "compile": "tsc -p . ",
+    "html": "cp -r ./public/ ./build/public/",
+    "views": "cp -r *.pug ./build",
+    "build": "npm run compile && npm run views && npm run html"
   },
   "author": "",
   "license": "ISC",

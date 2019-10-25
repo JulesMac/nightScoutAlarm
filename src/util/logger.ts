@@ -1,7 +1,7 @@
 
-import configRoot from "../../Config/app" 
+import configRoot from "../Config/config" 
 import moment from 'moment'
-import {Time} from "../Time/app"
+import {Time} from "./time"
 
 
 export class Logger{

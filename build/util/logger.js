@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = __importDefault(require("../../Config/app"));
+const config_1 = __importDefault(require("../Config/config"));
 const moment_1 = __importDefault(require("moment"));
-const app_2 = require("../Time/app");
+const time_1 = require("./time");
 class Logger {
     constructor(sink, component) {
         this.log = (message) => {
@@ -25,7 +25,7 @@ class Event {
 }
 class LogFactory {
     constructor() {
-        this.config = app_1.default.logger;
+        this.config = config_1.default.logger;
         this.logSize = this.config.logSize;
         this.end = 0;
         this.events = [];
@@ -51,7 +51,7 @@ class LogFactory {
         return this.getEvents().map(this.eventToString);
     }
     addEvent(component, msg) {
-        const event = new Event(moment_1.default(app_2.Time.now()).format("YYYY MM DD HH:mm:ss"), component, msg);
+        const event = new Event(moment_1.default(time_1.Time.now()).format("YYYY MM DD HH:mm:ss"), component, msg);
         if (this.events.length < this.logSize)
             this.events.push(event);
         else

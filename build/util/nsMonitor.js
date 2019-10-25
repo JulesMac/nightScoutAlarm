@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = require("../local_modules/Alarm/app");
-const app_2 = __importDefault(require("../Config/app"));
+const alarm_1 = require("./alarm");
+const config_1 = __importDefault(require("../Config/config"));
 const moment_1 = __importDefault(require("moment"));
 class NsMonitor {
     constructor(nightScout, logFactory) {
-        this.config = app_2.default.nsMonitor;
+        this.config = config_1.default.nsMonitor;
         this.alartSound = './alarm.m4a';
         this.periodicCheck = () => {
             this.nightScout.getSgData(3)
@@ -28,7 +28,7 @@ class NsMonitor {
             this.alarm.snooze();
         };
         this.nightScout = nightScout;
-        this.alarm = new app_1.Alarm(this.alartSound, logFactory);
+        this.alarm = new alarm_1.Alarm(this.alartSound, logFactory);
         this.log = logFactory.createLogger("main").log;
         setInterval(this.periodicCheck, this.config.nightScoutPollFrequency);
     }
