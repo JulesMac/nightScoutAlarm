@@ -6,18 +6,18 @@ import favicon from 'serve-favicon'
 import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
-import {NsMonitor} from '../util/nsMonitor'
-import {NightScout} from '../util/nightScout'
-import {LogFactory} from '../util/logger'
+import { NsMonitor } from '../util/nsMonitor'
+import { NightScout } from '../util/nightScout'
+import { LogFactory } from '../util/logger'
 
 
-import {component as indexRouter} from './routes/index';
-import {ns as nsRouter} from './routes/ns';
+import { component as indexRouter } from './routes/index';
+import { ns as nsRouter } from './routes/ns';
 import fs from 'fs'
 
 
 
-export const web = function(nsMonitor:NsMonitor, nightScout:NightScout, logFactory: LogFactory){
+export const web = function (nsMonitor: NsMonitor, nightScout: NightScout, logFactory: LogFactory) {
 
   const app = express();
 
@@ -36,7 +36,7 @@ export const web = function(nsMonitor:NsMonitor, nightScout:NightScout, logFacto
   app.use(express.static(path.join(__dirname, '../public')));
   app.use('/', indexRouter(logFactory));
   app.use('/ns', nsRouter(nsMonitor, nightScout, logFactory));
-  
+
 
   const PORT = config.port;
   app.listen(PORT, () => {

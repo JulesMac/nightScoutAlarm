@@ -2,7 +2,7 @@
 
 class Config{
   web = {
-    port : 3000,
+    port : 3003,
     title : "Floppet SG"
   };
 
