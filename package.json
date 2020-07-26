@@ -8,7 +8,8 @@
     "compile-svr": "tsc -p src ",
     "html": "cp -r ./public/ ./build/Release/public/",
     "views": "cp -r ./views/ ./build/Release/views/",
-    "build": "npm run compile-svr && npm run compile-cli && npm run views && npm run html"
+    "build": "npm run compile-svr && npm run compile-cli && npm run views && npm run html",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "author": "",
   "license": "ISC",
@@ -38,5 +39,12 @@
     "serve-favicon": "^2.5.0",
     "tree-kill": "^1.2.2",
     "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/mocha": "^8.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1",
+    "ts-node": "^8.10.2"
   }
 }

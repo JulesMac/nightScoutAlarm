@@ -15,7 +15,6 @@ export const ns = function (nsMonitor: NsMonitor, nightScout: NightScout, logFac
     nightScout.getSgData(25)
 
       .then(data => {
-        log("zoom:" + req.query.zoom)
         const zoom = req.query.zoom == "true"
         const minY = zoom ? data.sgSamples.reduce((p, v) => Math.min(p, v)) : 2;// * 0.90;
         const maxY = zoom ? data.sgSamples.reduce((p, v) => Math.max(p, v)) : 22;// * 1.10;
