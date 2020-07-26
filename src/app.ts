@@ -12,4 +12,4 @@ const logFactory = new LogFactory()
 const nightScout = new NightScout(nightScoutUrl, logFactory);
 
 const nsMonitor = new NsMonitor(nightScout, logFactory);
-const web = theWeb(nsMonitor, nightScout, logFactory);
+theWeb(nsMonitor, nightScout, logFactory);
