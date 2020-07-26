@@ -11,10 +11,32 @@ export const ns = function (nsMonitor: NsMonitor, nightScout: NightScout, logFac
   const log = logFactory.createLogger("route-ns").log;
   const router = express.Router();
 
-  router.get('/sgData', function (req, res) {
+  router.get('/chartData', function (req, res) {
     nightScout.getSgData(25)
+
       .then(data => {
-        res.send(data);
+        log("zoom:" + req.query.zoom)
+        const zoom = req.query.zoom == "true"
+        const minY = zoom ? data.sgSamples.reduce((p, v) => Math.min(p, v)) : 2;// * 0.90;
+        const maxY = zoom ? data.sgSamples.reduce((p, v) => Math.max(p, v)) : 22;// * 1.10;
+        const possibleTicks = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
+        var smallTicks = possibleTicks.filter(x => x<=minY)
+        smallTicks.splice(-1,1);
+        var largeTicks = possibleTicks.filter(x => x>=maxY)
+        largeTicks.splice(0,1);
+        const ticksToRemove = new Set(smallTicks.concat(largeTicks));
+        const ticksY = possibleTicks.filter(x => !ticksToRemove.has(x))
+        const actualMinY = ticksY[0];
+        const actualMaxY = ticksY[ticksY.length-1];
+        const realData = Array.from(data.sgSamples.entries(), pair => ({x:data.timeStamps[pair[0]], y:pair[1] })) ;
+        
+        res.send({
+          timeStamps : data.timeStamps,
+          data       : realData,
+          minY       : actualMinY,
+          maxY       : actualMaxY,
+          ticksY     : ticksY
+        });
       })
       .catch(error => {
         log(error);
