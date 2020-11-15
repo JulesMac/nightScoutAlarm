@@ -5,7 +5,8 @@ import {NsMonitor} from './util/nsMonitor'
 import {web as theWeb} from "./web/index"
 
 
-const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
+//const nightScoutUrl = 'https://bfg9000.azurewebsites.net';
+const nightScoutUrl = 'https://floppet-nightscout.herokuapp.com';
 //const nightScoutUrl = 'http://localhost:8080';
 
 const logFactory = new LogFactory()

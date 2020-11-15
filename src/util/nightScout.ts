@@ -46,7 +46,7 @@ export class NightScout{
     this.logFactory = logFactory
     this.log = logFactory.createLogger("nightScout").log;
     this.api = buildApi(this.baseUrl);
-    this.log("started NS");
+    this.log("connected to nightscout: " + baseUrl);
   }
   
   
