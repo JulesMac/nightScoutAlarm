@@ -6,7 +6,7 @@
   "scripts": {
     "compile-cli": "tsc -p client ",
     "compile-svr": "tsc -p src ",
-    "html": "cp -r ./public/ ./build/Release/public/",
+    "html": "cp -r ./public/ ./build/Release/",
     "views": "cp -r ./views/ ./build/Release/views/",
     "build": "npm run compile-svr && npm run compile-cli && npm run views && npm run html",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
