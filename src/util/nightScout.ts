@@ -36,14 +36,16 @@ export interface SgResponse
 
 export class NightScout{
   
-  readonly baseUrl : string
-  readonly logFactory :LogFactory
+  readonly baseUrl : string;
+  readonly logFactory :LogFactory;
+  readonly token : string;
   readonly log: (message: string) => void;
   readonly api: NsApi;
-
-  constructor(baseUrl : string, logFactory :LogFactory){
-    this.baseUrl = baseUrl
-    this.logFactory = logFactory
+ 
+  constructor(baseUrl : string, logFactory :LogFactory, token: string){
+    this.baseUrl = baseUrl;
+    this.logFactory = logFactory;
+    this.token = token;
     this.log = logFactory.createLogger("nightScout").log;
     this.api = buildApi(this.baseUrl);
     this.log("connected to nightscout: " + baseUrl);
@@ -55,9 +57,14 @@ export class NightScout{
 
   getSgData(sampleSize: number) : Promise<SgResponse> {
     let api = this.api
+    let token = this.token
     return new Promise(function(resolve, reject){
       axios.get<Sample[]>(
-        api.getSgSamples(sampleSize)
+        api.getSgSamples(sampleSize),{
+          headers: {
+            'API-SECRET': token
+          }
+        }
        //'https://bfg9000.azurewebsites.net/api/v2/ddata/at/'
         //'https://bfg9000.azurewebsites.net/api/v1/entries.json?count=3'
       )
@@ -88,6 +95,6 @@ export class NightScout{
   }
 }
 
-export function create(baseUrl : string, logFactory: LogFactory){
-  return new NightScout(baseUrl, logFactory)
+export function create(baseUrl : string, logFactory: LogFactory, token: string){
+  return new NightScout(baseUrl, logFactory, token)
 }
