@@ -60,7 +60,7 @@ export class NightScout{
     let token = this.token
     let log = this.log
     return new Promise(function(resolve, reject){
-      log("About to call nightscout")
+      // log("About to call nightscout")
       axios.get<Sample[]>(
         api.getSgSamples(sampleSize),{
           headers: {
