@@ -58,7 +58,9 @@ export class NightScout{
   getSgData(sampleSize: number) : Promise<SgResponse> {
     let api = this.api
     let token = this.token
+    let log = this.log
     return new Promise(function(resolve, reject){
+      log("About to call nightscout")
       axios.get<Sample[]>(
         api.getSgSamples(sampleSize),{
           headers: {
@@ -89,6 +91,7 @@ export class NightScout{
         // }
       })
       .catch(error => {
+        log("Error calling nightscout: " + error)
         reject({errorMessage: error});
       });
     });
