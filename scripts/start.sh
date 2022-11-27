@@ -1,2 +1,2 @@
-cd /home/pi/GitHub/nightScoutAlarm/build/Release
+cd /home/pi/nightscout/build/Release
 node app.js > alarm.log &
