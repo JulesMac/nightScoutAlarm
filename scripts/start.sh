@@ -1,2 +1,2 @@
-cd /home/pi/nightScoutAlarm/build/Release
-node app.js > alarm.log &
+#!/bin/bash 
+node /home/pi/nightScoutAlarm/build/Release/app.js > /var/log/flopper/flopper-alarm.log 

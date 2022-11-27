@@ -1,3 +1,4 @@
+#!/bin/bash 
 cd ~/nightScoutAlarm
 git pull
 npm install
